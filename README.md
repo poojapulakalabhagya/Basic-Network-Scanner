@@ -1,104 +1,191 @@
-# Network Scanner
+# Security Guidelines
 
-A command-line tool for analyzing hosts on a network using various scanning techniques including ICMP echo requests, TCP port scanning, and ARP scanning. This tool is designed for network administrators and security professionals to assess network configurations and identify potential vulnerabilities.
+This document outlines security considerations and best practices for using the Network Scanner tool.
 
-## Features
+## Legal Considerations
 
--   **ICMP Echo Request (Ping) Scanning**: Quickly check the availability of hosts.
--   **TCP Port Scanning**: Identify open ports and services running on a host.
--   **ARP Network Scanning**: Discover devices on a local network.
--   **Configurable Scan Types and Timeouts**: Customize scans to suit your needs.
--   **Support for Port Ranges**: Scan specific ports or entire ranges.
--   **Detailed Scan Results Output**: Get comprehensive information about each scan.
+### General Guidelines
 
-## Requirements
+1. **Obtain Permission**
 
--   **Python 3.6 or higher**: Ensure you have the correct version of Python installed.
--   **Scapy 2.5.0 or higher**: Required for packet crafting and network interactions.
--   **Root/Administrator Privileges**: Necessary for raw socket operations.
+    - Always obtain explicit permission before scanning any network
+    - Document all permissions received
+    - Keep records of authorized scanning activities
 
-## Installation
+2. **Legal Compliance**
 
-1. **Clone the Repository**:
+    - Be aware of local and international laws regarding network scanning
+    - Understand the Computer Fraud and Abuse Act (CFAA) and similar legislation
+    - Consult legal counsel for specific compliance requirements
 
-```bash
-git clone https://github.com/yourusername/network-scanner.git
-cd network-scanner
-```
+3. **Scope of Scanning**
+    - Clearly define and document the scope of scanning activities
+    - Do not exceed authorized scanning boundaries
+    - Maintain records of scanned targets and results
 
-2. **Install Dependencies**:
+## Best Practices
 
-```bash
-pip install -r requirements.txt
-```
+### Before Scanning
 
-## Usage
+1. **Planning**
 
-Basic usage:
+    - Define clear objectives for the scan
+    - Identify target systems and networks
+    - Schedule scans during maintenance windows when possible
+    - Notify network administrators and security teams
 
-```bash
-python src/main.py <target> [options]
-```
+2. **Configuration**
+    - Use appropriate timeout values
+    - Configure scanning rate limits
+    - Set appropriate port ranges
+    - Enable logging for audit purposes
 
-### Examples
+### During Scanning
 
-1. **Scan a Single Host with All Scan Types**:
+1. **Monitoring**
 
-```bash
-python src/main.py 192.168.1.1
-```
+    - Monitor network performance during scans
+    - Watch for unexpected behavior
+    - Be prepared to stop scans if issues arise
+    - Keep network administrators informed
 
-2. **Perform Only ICMP Scan**:
+2. **Resource Management**
+    - Avoid overwhelming target systems
+    - Use appropriate scanning intervals
+    - Monitor system resources
+    - Implement rate limiting
 
-```bash
-python src/main.py 192.168.1.1 -t icmp
-```
+### After Scanning
 
-3. **Scan Specific Ports**:
+1. **Documentation**
 
-```bash
-python src/main.py 192.168.1.1 -p 80,443,8080
-```
+    - Document all findings
+    - Report vulnerabilities responsibly
+    - Maintain scan logs
+    - Share results with authorized personnel only
 
-4. **Scan a Port Range**:
+2. **Cleanup**
+    - Remove any temporary files
+    - Secure scan results
+    - Update documentation
+    - Conduct post-scan review
 
-```bash
-python src/main.py 192.168.1.1 -p 1-1000
-```
+## Security Risks
 
-5. **Scan a Network Subnet**:
+### Network Impact
 
-```bash
-python src/main.py 192.168.1.0/24 -t arp
-```
+1. **Performance Issues**
 
-### Command Line Options
+    - Network congestion
+    - System resource exhaustion
+    - Service disruption
+    - False positives in security systems
 
--   `target`: Target IP address or network (required)
--   `-t, --type`: Type of scan to perform (choices: all, icmp, tcp, arp; default: all)
--   `-p, --ports`: Ports to scan (e.g., 80,443 or 1-1000)
--   `-T, --timeout`: Timeout in seconds for each scan (default: 2)
+2. **Security Alerts**
+    - Intrusion detection system triggers
+    - Firewall alerts
+    - Security information and event management (SIEM) alerts
+    - Network monitoring system alerts
 
-## Project Structure
+### Mitigation Strategies
 
-```
-network-scanner/
-├── src/
-│   ├── main.py         # Command-line interface
-│   └── scanner.py      # Core scanning functionality
-├── tests/              # Test files
-├── docs/               # Documentation
-├── requirements.txt    # Project dependencies
-└── README.md           # Project documentation
-```
+1. **Technical Controls**
 
-## Security Considerations
+    - Implement rate limiting
+    - Use appropriate scanning intervals
+    - Configure timeouts properly
+    - Enable logging and monitoring
 
--   **Intrusive Nature**: This tool performs network scanning which may be considered intrusive.
--   **Permission**: Use only on networks you have permission to scan.
--   **Network Restrictions**: Some networks may block ICMP or ARP requests.
--   **Privileges**: Running the tool requires elevated privileges.
+2. **Procedural Controls**
+    - Follow scanning procedures
+    - Maintain documentation
+    - Report issues promptly
+    - Conduct regular reviews
 
-## License
+## Responsible Disclosure
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+### Vulnerability Reporting
+
+1. **Process**
+
+    - Document vulnerabilities clearly
+    - Provide detailed reproduction steps
+    - Include potential impact assessment
+    - Suggest mitigation strategies
+
+2. **Communication**
+    - Contact appropriate personnel
+    - Use secure communication channels
+    - Maintain confidentiality
+    - Follow established disclosure procedures
+
+### Timeline
+
+1. **Initial Contact**
+
+    - Notify affected parties promptly
+    - Provide vulnerability details
+    - Establish communication channels
+    - Set expectations for response
+
+2. **Resolution**
+    - Allow reasonable time for fixes
+    - Verify implemented solutions
+    - Document resolution process
+    - Conduct post-resolution review
+
+## Emergency Procedures
+
+### Incident Response
+
+1. **Identification**
+
+    - Recognize scanning issues
+    - Assess impact
+    - Document findings
+    - Notify appropriate personnel
+
+2. **Containment**
+
+    - Stop scanning activities
+    - Isolate affected systems
+    - Preserve evidence
+    - Implement temporary fixes
+
+3. **Recovery**
+    - Restore normal operations
+    - Verify system integrity
+    - Update documentation
+    - Conduct post-incident review
+
+## Compliance
+
+### Regulatory Requirements
+
+1. **Data Protection**
+
+    - Follow data protection regulations
+    - Secure scan results
+    - Protect sensitive information
+    - Maintain audit trails
+
+2. **Industry Standards**
+    - Follow relevant security standards
+    - Implement best practices
+    - Maintain compliance documentation
+    - Conduct regular audits
+
+### Documentation
+
+1. **Records**
+
+    - Maintain scan logs
+    - Document permissions
+    - Record findings
+    - Update procedures
+
+2. **Reporting**
+    - Generate regular reports
+    - Document incidents
+    - Track improvements
+    - Maintain compliance records
